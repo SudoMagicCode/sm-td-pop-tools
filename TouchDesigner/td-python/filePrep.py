@@ -9,6 +9,7 @@ class ToxExporter:
         self.inventory = SudoMagic.entities.githubCollection()
         self.Release_dir_root: str = "../release/package/"
         self.Log_file: str = "log.txt"
+        self.save_buffer: COMP = ownerOp.op('base_save_buffer')
 
         print("TOX Exporter Init")
 
@@ -133,6 +134,11 @@ class ToxExporter:
     def save_external(self, target_op) -> str:
         asset_path = f'{target_op.name}.tox'
         save_path = f'{self.Release_dir_root}{asset_path}'
-        target_op.store("author", ipar.Settings.Author.eval())
-        target_op.save(save_path)
+
+        copy: COMP = self.save_buffer.copy(target_op)
+        copy.color = (0.67, 0.67, 0.67)
+        copy.store("author", ipar.Settings.Author.eval())
+        copy.save(save_path)
+        copy.destroy()
+
         return asset_path
