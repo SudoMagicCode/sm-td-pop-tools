@@ -9,6 +9,10 @@ on:
 jobs:
   Build_tox:
     runs-on: [self-hosted, Windows, TouchDesigner]
+
+    permissions:
+      contents: write
+    
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
