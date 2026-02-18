@@ -57,9 +57,7 @@ jobs:
         with:
           tag_name: ${{ steps.semver.outputs.VERSION }}
           name: Release ${{ steps.semver.outputs.VERSION }}
-          # Generates "What's Changed" section automatically from PRs/commits
-          generate_release_notes: true
           # Set to true if you want it to stay hidden until you review it
           draft: false 
           prerelease: false
-          files: ./release/package.zip
+          files: ./release/package/*
